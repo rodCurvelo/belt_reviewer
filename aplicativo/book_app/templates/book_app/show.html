@@ -1,0 +1,17 @@
+<html>
+<head>
+	<title>{{ book.title }}</title>
+</head>
+<body>
+	<h4>{{ book.title }}</h4>
+	<p>{{ book.author }}</p>
+
+	{% for review in book.reviews.all %}
+		<p>Rating: {{ review.rating }}</p>
+		<p>
+			<a href="/users/{{ review.user.id }}">{{ review.user.name }}</a> says: {{ review.content }} 
+		</p>
+		<p>Posted on {{ review.created_at|date }}</p>
+	{% endfor %}
+</body>
+</html>

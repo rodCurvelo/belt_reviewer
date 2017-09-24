@@ -1,0 +1,63 @@
+<html>
+<head>
+	<title>Login or Register</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'login_registration/css/index.css'%}" media="screen" title="no title" charset="utf-8" />
+</head>
+<body>
+
+	<!-- Errors -->
+	{% if messages %}
+		<ul>
+		{% for message in messages %}
+			<li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+	<!-- End Errors -->
+
+
+	<h1>Register</h1>
+	<form action="{% url 'register' %}" method="post">
+		{% csrf_token %}
+		<div>
+			<label>Name:</label>
+			<input type="text" name="name" />
+		</div>
+
+		<div>
+			<label>Alias:</label>
+			<input type="text" name="alias" />
+		</div>
+		
+		<div>
+			<label>Email:</label>
+			<input type="email" name="email" />
+		</div>
+		
+		<div>
+			<label>Password</label>
+			<input type="password" name="password" />
+		</div>
+		
+		<div>
+			<label>Password Confirmation:</label>
+			<input type="password" name="password_confirmation" />
+		</div>
+		
+		<input type="submit" value="Register">
+	</form> 
+
+	<h1>Login</h1>
+	<form action="{% url 'login' %}" method="post">
+		{% csrf_token %}
+		<label>Email:</label>
+		<input type="email" name="email" />
+
+		<label>Password</label>
+		<input type="password" name="password" />
+
+		<input type="submit" value="Login">
+	</form>
+</body>
+</html>

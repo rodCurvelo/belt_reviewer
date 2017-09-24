@@ -1,0 +1,31 @@
+<html>
+<head>
+	<title>Add Book</title>
+</head>
+<body>
+	<h5>Add a new book title and a review:</h5>
+	<!-- Errors -->
+	{% if messages %}
+		{% for message in messages %}
+			<p>{{ message }}</p>
+		{% endfor %}
+	{% endif %}
+
+	<form action="{% url 'create_book' %}" method="post">
+		{% csrf_token %}
+		Book Title: <input type="text" name="title" />
+		Book Author: <input type="text" name="author" />
+
+		Review: <textarea name="content"></textarea>
+		Rating: <select name="rating">
+			<option value="5" selected="true">5</option>
+			<option value="4">4</option>
+			<option value="3">3</option>
+			<option value="2">2</option>
+			<option value="1">1</option>
+		</select>
+
+		<button type="submit">Add Book and Review</button>
+	</form>
+</body>
+</html>
